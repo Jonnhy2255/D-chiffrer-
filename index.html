@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Déchiffreur d'Invoice Lightning</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightning-decoder/1.0.0/lightning-decoder.min.js"></script>
+</head>
+<body>
+    <h1>Déchiffreur d'Invoice Lightning</h1>
+    <input type="text" id="invoiceInput" placeholder="Collez votre invoice ici" />
+    <button id="decodeButton">Déchiffrer</button>
+    <pre id="output"></pre>
+
+    <script>
+        document.getElementById('decodeButton').addEventListener('click', function() {
+            const invoice = document.getElementById('invoiceInput').value;
+            try {
+                // Utiliser la bibliothèque pour déchiffrer l'invoice
+                const decoded = LightningDecoder.decode(invoice);
+                // Afficher les résultats
+                document.getElementById('output').textContent = JSON.stringify(decoded, null, 2);
+            } catch (error) {
+                // Afficher l'erreur si le déchiffrement échoue
+                document.getElementById('output').textContent = "Erreur : " + error.message;
+            }
+        });
+    </script>
+</body>
+</html>
